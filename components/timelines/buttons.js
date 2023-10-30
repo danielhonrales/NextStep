@@ -1,4 +1,5 @@
-import { Button } from "react-native"
+import { Button, StyleSheet } from "react-native"
+import { COLORS } from "../colors";
 
 export const ChatButton = () => {
     return <Button
