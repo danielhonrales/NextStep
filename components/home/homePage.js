@@ -27,6 +27,5 @@ export function HomePage({navigation}) {
 
 const styles = StyleSheet.create({
     container: {
-        color: COLORS.background
     }
 })

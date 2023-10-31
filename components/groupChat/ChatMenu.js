@@ -3,6 +3,7 @@ import { FONTS } from "../fonts";
 import { COLORS } from "../colors";
 import { TextInput, View, ScrollView, StyleSheet } from "react-native"
 import { Message } from "./Message"
+import { UserMessage } from "./Message";
 
 export function ChatMenu({navigation}) {
     const [input, onChangeNumber] = React.useState('');
@@ -10,17 +11,16 @@ export function ChatMenu({navigation}) {
     return (
         <ScrollView automaticallyAdjustKeyboardInsets={true} contentContainerStyle={styles.container}>
             <ScrollView automaticallyAdjustKeyboardInsets={true} contentContainerStyle={styles.feed}>
-                <Message text="bro"/>
-                <Message text="broski"/>
+                <Message user="daniel" text="bro"/>
+                <UserMessage user="Me" text="audfnwiefnpwiqnpiqwungpiqwungpiqujnpqirunpqirujnqpierbnpeiqrjnpeqrjnpiun"/>
+                <Message user="daniel" text="audfnwiefnpwiqnpiqwungpiqwungpiqujnpqirunpqirujnqpierbnpeiqrjnpeqrjnpiun"/>
             </ScrollView>
-            <Message user="bruh" text="bro"/>
             <TextInput
                 style={styles.input}
                 onChangeText={onChangeNumber}
                 value={input}
                 placeholder="Send a message..."
             />
-            <Message user="bruh" text="bro"/>
         </ScrollView>
     )
 }
