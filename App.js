@@ -4,13 +4,13 @@ import BaseButton from './components/timelines/buttons';
 import COLORS from './components/colors'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { HomePage } from './components/home/HomePage';
+import { HomePage } from './components/home/homePage';
 import { ChatMenu } from './components/groupChat/ChatMenu';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  return (
+  return (  
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomePage}/>
