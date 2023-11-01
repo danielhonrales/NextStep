@@ -22,7 +22,9 @@ export function HomePage({ navigation }) {
         </View>
       </View>
 
-      <ChatButton navigation={navigation} />
+      <View style={styles.chatButton}>
+        <ChatButton navigation={navigation} />
+      </View>
     </View>
   );
 }
@@ -70,5 +72,9 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: "bold"
+  },
+  chatButton: {
+    alignSelf: 'flex-end',
+    margin: 10
   }
 });
