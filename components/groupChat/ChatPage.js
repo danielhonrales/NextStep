@@ -41,7 +41,7 @@ export function ChatPage({navigation}) {
     }
 
     return (
-        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} keyboardVerticalOffset={64} keyboardShouldPersistTaps='handled' style={styles.container}>
+        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'margin'} keyboardVerticalOffset={64} keyboardShouldPersistTaps='handled' style={styles.container}>
             <ScrollView  ref={ref => {this.scrollView = ref}} onContentSizeChange={() => this.scrollView.scrollToEnd({animated: true})} contentContainerStyle={styles.feed}>
                 <UserMessage user={user} text="Hello!"/>
                 <Message user={otherUser} text="Hello!" handleModal={() => setProfileModelVisible(true)}/>
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
         minHeight: '95%',
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        paddingBottom: 50
+        paddingBottom: 25
     },
     inputView: {
         flexDirection: 'row',
