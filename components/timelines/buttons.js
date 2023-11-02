@@ -13,4 +13,4 @@ const buttonStyle = StyleSheet.create({
     }
 })
 
-// timeline design 
+// timeline design
