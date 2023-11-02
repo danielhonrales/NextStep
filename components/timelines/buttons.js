@@ -12,3 +12,5 @@ const buttonStyle = StyleSheet.create({
         color: COLORS.black
     }
 })
+
+// timeline design 
