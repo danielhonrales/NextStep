@@ -12,3 +12,5 @@ const buttonStyle = StyleSheet.create({
         color: COLORS.black
     }
 })
+
+// when a timeline is pressed, navigate to its specifics
