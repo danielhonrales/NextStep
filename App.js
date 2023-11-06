@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { HomePage } from './components/home/homePage';
 import { ChatPage } from './components/groupChat/ChatPage';
+import { ResourcesPage } from './components/extraResources/ResourcesPage';
 
 const Stack = createNativeStackNavigator();
 
