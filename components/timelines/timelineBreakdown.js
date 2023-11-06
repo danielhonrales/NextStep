@@ -10,9 +10,17 @@ import {View, Text, Image, ScrollView, TextInput,
 
 // when a specific timeline is clicked, open the page with the breakdown
 
+
 export function TimelineBreakdown ({Navigation} ) {
     
+    <view> 
+    <image>
+        dropdownicon
+    </image>
+</view>
 }
+
+
 // To close it, click it again 
 
 // to mark a task as complete, tap it and turn it green 
