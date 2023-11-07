@@ -12,12 +12,12 @@ import {View, Text, Image, ScrollView, TextInput,
 export function TimelineBreakdown ({Navigation} ) {
 
     <view> 
-    <image>
-        dropdownicon
-    </image>
-
-    <Button title = 'Expand' />
-  
+    <Image 
+        source={require('./../../assets/dropdownIcon.png')}
+        style={styles.x}
+                        />
+    <view>
+    </view>
 </view>
 }
 
