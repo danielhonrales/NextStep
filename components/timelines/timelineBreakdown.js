@@ -21,7 +21,43 @@ export function TimelineBreakdown ({Navigation} ) {
 </view>
 }
 
-const styles = Stylesheet.create ({
-
-
+const styles = StyleSheet.create({
+    touchable: {
+        borderWidth: 3,
+        borderColor: COLORS.black,
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '90%',
+        borderRadius: 35,
+    },
+    stepView: {
+        flex: 1,
+        flexDirection: 'row'
+    },
+    stepName: {
+        flex: 4,
+        fontSize: FONTS.subtitleSize,
+        alignContent: 'center',
+        justifyContent: 'flex-start',
+        paddingLeft: 5
+    },
+    iconsView: {
+        flex: 1,
+        flexDirection: 'column',
+        alignContent: 'center',
+        justifyContent: 'flex-end',
+        paddingRight: 5
+    },
+    icon: {
+        height: 15,
+        width: 45,
+    },
+    dropdownIcon: {
+        height: 15,
+        width: 45,
+    },
+    statusIcon: {
+        height: 15,
+        width: 45,
+    }
 })
