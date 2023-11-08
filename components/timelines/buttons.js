@@ -1,4 +1,4 @@
-import { Button, StyleSheet } from "react-native"
+import { Button, StyleSheet, Image } from "react-native"
 import { COLORS } from "../colors";
 
 export const ChatButton = () => {
@@ -12,5 +12,6 @@ const buttonStyle = StyleSheet.create({
         color: COLORS.black
     }
 })
+
 
 // when a timeline is pressed, navigate to its specifics
