@@ -5,8 +5,9 @@ import React from "react"
 import {View, Text, Image, ScrollView, TextInput, 
     TouchableOpacity, Button, Stylesheet} from 'react-native';
 
-// in this file, I want to be able to click on the dropdown Icon and 
-// expand out the timeline
+// tasks: 
+// click on the dropdown icon to expand out the timeline
+// click it again to collapse 
 // mark a completed task in green by tapping
 
 
