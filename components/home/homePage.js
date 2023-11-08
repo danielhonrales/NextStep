@@ -2,6 +2,8 @@ import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { COLORS } from "../colors";
 import { ChatButton } from "../groupChat/ChatButton";
+import { TimelineButton } from "./TimelineButton";
+import { STATUS } from "../Status";
 
 export function HomePage({ navigation }) {
   return (
@@ -9,6 +11,11 @@ export function HomePage({ navigation }) {
       <View style={styles.timelineContainers}>
         <Text style={styles.title}>Current Timelines</Text>
         <View style={styles.currentTimelinecontainer}>
+          <TimelineButton 
+          navigation={navigation} 
+          name="TimelinePage"
+          status={STATUS.in_progress}
+          />
           <Text style={styles.textSection}>Getting first house</Text>
           <Text style={styles.textSection}>Filler Timeline</Text>
         </View>

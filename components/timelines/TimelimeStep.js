@@ -1,11 +1,11 @@
-import { TouchableOpacity, StyleSheet } from "react-native"
+import { TouchableOpacity, View, Image, Text, StyleSheet } from "react-native"
 import { FONTS } from "../fonts"
 import { COLORS } from "../colors"
-import { STEP_STATUS } from "./StepStatus"
+import { STATUS } from "../Status"
 import React from "react"
 
 export function TimelineStep({name}) {
-    const [status, setStatus] = React.useState(STEP_STATUS.in_progress)
+    const [status, setStatus] = React.useState(STATUS.in_progress)
     const [expanded, setExpanded] = React.useState(false);
     const [substeps, setSubsteps] = React.useState([])
 
