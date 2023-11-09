@@ -1,6 +1,6 @@
 export const FONTS = {
 
-    titleSize: 32,
+    titleSize: 24,
     subtitleSize: 20,
     textSize: 16
 }

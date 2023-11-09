@@ -47,36 +47,42 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: '90%',
-        borderRadius: 35,
+        height: 100,
+        borderRadius: 25,
+        margin: 10
     },
     stepView: {
         flex: 1,
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
     stepName: {
         flex: 4,
-        fontSize: FONTS.subtitleSize,
-        alignContent: 'center',
-        justifyContent: 'flex-start',
-        paddingLeft: 5
+        fontSize: FONTS.titleSize,
+        alignSelf: 'center',
+        paddingLeft: 10,
+        flexWrap: 'wrap'
     },
     iconsView: {
         flex: 1,
         flexDirection: 'column',
         alignContent: 'center',
-        justifyContent: 'flex-end',
-        paddingRight: 5
+        justifyContent: 'center',
     },
     icon: {
-        height: 15,
-        width: 45,
-    },
-    dropdownIcon: {
-        height: 15,
-        width: 45,
+        flex: 1,
+        justifyContent: "flex-end"
     },
     statusIcon: {
         height: 15,
         width: 45,
-    }
+        alignSelf: 'center',
+        marginBottom: 10
+    },
+    dropdownIcon: {
+        height: 30,
+        width: 30,
+        resizeMode: 'center',
+        alignSelf: 'center',
+        marginBottom: 5
+    },
 })
