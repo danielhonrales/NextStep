@@ -16,7 +16,12 @@ export function TimelineBreakdown ({Navigation} ) {
         <Image 
             source={require('./../../assets/dropdownIcon.png')}
             style={styles.x}
-                            />
+        />
+        <Button title = "dropdownIcon" 
+                    onPress={() => (
+                    <view style = {styles.dropdownIcon}/> 
+
+        ) } />
         <view>
         </view>
     </view>
