@@ -4,16 +4,10 @@ import { COLORS } from "../colors";
 import { ScrollView, TouchableOpacity, Image, Modal, StyleSheet, View } from "react-native"
 import { TimelineStep } from "./TimelimeStep";
 
-export function TimelinePage({navigation, name, steps}) {
-    return <View style={styles.pageView}>
-        <TimelineStep name="Build a House"/>
-    </View>
+export function TimelineCreationPage({navigation, name, steps}) {
+
 }
 
 const styles = StyleSheet.create({
-    pageView: {
-        height: '100%',
-        width: '100%',
-        alignItems: 'flex-end',
-    },
+
 })
