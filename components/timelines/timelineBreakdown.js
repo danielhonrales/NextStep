@@ -8,7 +8,6 @@ import {View, Text, Image, ScrollView, TextInput,
 // tasks: 
 // click on the dropdown icon to expand out the timeline
 // click it again to collapse 
-// mark a completed task in green by tapping
 
 
 export function TimelineBreakdown ({Navigation} ) {
