@@ -8,6 +8,7 @@ import { HomePage } from './components/home/homePage';
 import { ChatPage } from './components/groupChat/ChatPage';
 import { TimelinePage } from './components/timelines/TimelinePage';
 import { ResourcesPage } from './components/extraResources/ResourcesPage';
+import { LoginPage } from './components/login/loginPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +17,7 @@ export default function App() {
   return (  
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen name="Login" component={LoginPage}/>
         <Stack.Screen name="Home" component={HomePage}/>
         <Stack.Screen name="ChatPage" component={ChatPage}/>
         <Stack.Screen name="TimelinePage" component={TimelinePage}/>
