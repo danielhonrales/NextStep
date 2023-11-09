@@ -12,15 +12,18 @@ import {View, Text, Image, ScrollView, TextInput,
 
 
 export function TimelineBreakdown ({Navigation} ) {
-
-    <view> 
-    <Image 
-        source={require('./../../assets/dropdownIcon.png')}
-        style={styles.x}
-                        />
-    <view>
+    return (
+        <view> 
+        <Image 
+            source={require('./../../assets/dropdownIcon.png')}
+            style={styles.x}
+                            />
+        <view>
+        </view>
     </view>
-</view>
+    )
+
+   
 }
 
 const styles = StyleSheet.create({
