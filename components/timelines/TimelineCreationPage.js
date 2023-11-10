@@ -4,14 +4,14 @@ import { COLORS } from "../colors";
 import { Text, TouchableOpacity, Image, Modal, StyleSheet, View } from "react-native"
 import { TimelineStep } from "./TimelimeStep";
 import { useDispatch } from 'react-redux';
-import { addStep } from "../redux/action";
 import { Step } from "./Step";
 import { STATUS } from "../Status";
+import { addStep } from "../redux/timelinesSlice";
 
 export function TimelineCreationPage({navigation, name, steps}) {
-    const [task, setTask] = useState('')
+    const dispatch = useDispatch()
 
-    const addDummyStep = useDispatch(addStep({
+    const addDummyStep = dispatch(addStep({
         timelineName: "House Hunting",
         step: new Step(0, "stepbruh", STATUS.in_progress, [], "None")
     }))
@@ -19,7 +19,7 @@ export function TimelineCreationPage({navigation, name, steps}) {
     return (
         <TouchableOpacity
         style={styles.createTimelineButton}
-        onPress={() => addDummyStep() }
+        onPress={() => addDummyStep }
         >
             <Text style={styles.createTimeline}>New step</Text>
         </TouchableOpacity>

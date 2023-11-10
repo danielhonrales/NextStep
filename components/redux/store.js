@@ -1,6 +1,8 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { stepReducer } from "./stepReducer"
+import { combineReducers, configureStore, createReducer, createSlice } from "@reduxjs/toolkit";
+import timelinesReducer from "./timelinesSlice";
 
 export default configureStore({
-    reducer: stepReducer
+    reducer: {
+        timelines : timelinesReducer
+    }
 });
