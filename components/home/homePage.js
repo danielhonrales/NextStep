@@ -1,9 +1,10 @@
 import React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, TouchableOpacity, View, StyleSheet } from "react-native";
 import { COLORS } from "../colors";
 import { ChatButton } from "../groupChat/ChatButton";
 import { TimelineButton } from "./TimelineButton";
 import { STATUS } from "../Status";
+import { FONTS } from "../fonts";
 
 export function HomePage({ navigation }) {
   return (
@@ -13,13 +14,20 @@ export function HomePage({ navigation }) {
         <View style={styles.currentTimelinecontainer}>
           <TimelineButton 
           navigation={navigation} 
-          name="TimelinePage"
+          name="House Hunting"
           status={STATUS.in_progress}
           />
           <Text style={styles.textSection}>Getting first house</Text>
           <Text style={styles.textSection}>Filler Timeline</Text>
         </View>
       </View>
+
+      <TouchableOpacity
+        style={styles.createTimelineButton}
+        onPress={() => navigation.navigate('TimelineCreationPage')}
+        >
+        <Text style={styles.createTimeline}>Create Timeline</Text>
+      </TouchableOpacity>
 
       <View style={styles.timelineContainers}>
         <Text style={styles.title}>Past Timelines</Text>
@@ -83,5 +91,22 @@ const styles = StyleSheet.create({
   chatButton: {
     alignSelf: 'flex-end',
     margin: 10
+  },
+  createTimelineButton: {
+    width: 75,
+    height: 30,
+    borderRadius: 20,
+    alignContent: 'center',
+    alignSelf: 'center'
+  },
+  createTimeline: {
+    width: 150,
+    height: 30,
+    borderRadius: 20,
+    fontSize: FONTS.fontSize,
+    color: COLORS.white,
+    backgroundColor: COLORS.highlight,
+    textAlign: "center",
+    textAlignVertical: 'center'
   }
 });

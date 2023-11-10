@@ -7,7 +7,7 @@ import React from "react"
 export function TimelineButton({navigation, name, status}) {
     return <TouchableOpacity
         style={styles.touchable}
-        onPress={() => navigation.navigate('TimelinePage')}
+        onPress={() => navigation.navigate('TimelinePage', {name: name})}
         >
             <Text style={styles.name}>{name}</Text>
     </TouchableOpacity>
