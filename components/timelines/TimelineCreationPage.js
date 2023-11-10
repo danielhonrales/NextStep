@@ -16,12 +16,14 @@ export function TimelineCreationPage({navigation, name, steps}) {
         step: new Step(0, "stepbruh", STATUS.in_progress, [], "None")
     }))
 
-    return <TouchableOpacity
-    style={styles.createTimelineButton}
-    onPress={() => addDummyStep() }
-    >
-        <Text style={styles.createTimeline}>New step</Text>
-    </TouchableOpacity>
+    return (
+        <TouchableOpacity
+        style={styles.createTimelineButton}
+        onPress={() => addDummyStep() }
+        >
+            <Text style={styles.createTimeline}>New step</Text>
+        </TouchableOpacity>
+    )
 }
 
 const styles = StyleSheet.create({
@@ -41,5 +43,5 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.highlight,
         textAlign: "center",
         textAlignVertical: 'center'
-    }
+    },
 })
