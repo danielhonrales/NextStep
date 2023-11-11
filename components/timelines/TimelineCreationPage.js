@@ -4,7 +4,6 @@ import { COLORS } from "../colors";
 import { Text, TouchableOpacity, Image, Modal, StyleSheet, View } from "react-native"
 import { TimelineStep } from "./TimelimeStep";
 import { useDispatch } from 'react-redux';
-import { Step } from "./Step";
 import { STATUS } from "../Status";
 import { addStep } from "../redux/timelinesSlice";
 
@@ -13,7 +12,12 @@ export function TimelineCreationPage({navigation, name, steps}) {
 
     const addDummyStep = dispatch(addStep({
         timelineName: "House Hunting",
-        step: new Step(0, "stepbruh", STATUS.in_progress, [], "None")
+        step: {
+            id: 0,
+            name: 'stepbruh',
+            status: STATUS.in_progress,
+            substeps: []
+        }
     }))
 
     return (

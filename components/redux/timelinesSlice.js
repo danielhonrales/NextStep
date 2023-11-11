@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { STATUS } from "../Status";
-import { Timeline } from "../timelines/Timeline";
+import { houseHuntingTimeline } from "./Timeline-HouseHunting";
 
 export const timelinesSlice = createSlice({
   name: 'timelines',
   initialState: {
-     "House Hunting": new Timeline("House Hunting", STATUS.in_progress, [])
+     "House Hunting": houseHuntingTimeline
   },
   reducers: {
       addStep: (state, action) => {

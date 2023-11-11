@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         height: 15,
         width: 45,
         alignSelf: 'center',
-        marginBottom: 10
+        marginBottom: 10,
     },
     dropdownIcon: {
         height: 30,

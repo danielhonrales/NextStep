@@ -7,23 +7,19 @@ import { TimelineStep } from "./TimelimeStep";
 
 export function TimelinePage({route, navigation}) {
     const stepsInfo = useSelector(state => state.timelines[route.params.name].steps)
-    const [steps, setSteps] = useState(buildSteps)
+    const [steps, setSteps] = useState(buildSteps(stepsInfo))
 
-    function buildSteps() {
-        stepList = stepsInfo.map((stepInfo) => {
-            return (
-            <TimelineStep name={stepInfo.name}/>
-            )
-        })
-        console.log(stepList)
+    function buildSteps(stepsInfo) {
+        stepList = []
+        stepsInfo.forEach(stepInfo => {
+            stepList.push(<TimelineStep name={stepInfo.name} key={stepInfo.id}/>);
+            
+        });
         return stepList
     }
 
     return <View style={styles.pageView}>
         {steps}
-        <TimelineStep name="Build a House"/>
-        <TimelineStep name="Destroy a House"/>
-        <TimelineStep name="Mourn a House"/>
     </View>
 }
 
