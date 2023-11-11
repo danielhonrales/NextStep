@@ -2,11 +2,11 @@ import { TouchableOpacity, View, Image, Text, StyleSheet } from "react-native"
 import { FONTS } from "../fonts"
 import { COLORS } from "../colors"
 import { STATUS } from "../Status"
-import { useDispatch } from 'react-redux';
-import { expand } from "../redux/timelinesSlice";
+import { useSelector, useDispatch } from 'react-redux';
+import { expand, toggleStatus } from "../redux/timelinesSlice";
 import React, { useState } from "react"
 
-export function TimelineStep({timelineName, name, level, updateTimeline}) {
+export function TimelineStep({navigation, timelineName, id, name, level, expanded, status, leaf}) {
     const dispatch = useDispatch()
 
     const delay = ms => new Promise(
@@ -14,51 +14,107 @@ export function TimelineStep({timelineName, name, level, updateTimeline}) {
     );
 
     function getWidth() {
-        value = 90 - (level * 10);
+        value = 95 - (level * 10);
         percentage = value.toString() + "%"
         return percentage
     }
 
-    async function stepPressed() {
+    function setDropdownRotation() {
+        return expanded ? '180deg' : '0deg'
+    }
+
+    
+    function getStatusIcon() {
+        icon = status == STATUS.in_progress ? require('./../../assets/inprogress.png') : require('./../../assets/checkmark.png')
+        return icon
+    }
+
+    function getStatusIconPos() {
+        leafPos = {
+            justifyContent: 'flex-start',
+            marginTop: 12
+        }
+        return leaf ? leafPos : {}
+    }
+
+    function getStatusColor() {
+        return status == STATUS.in_progress ? COLORS.background : COLORS.accent
+    }
+    
+    function getNameColor() {
+        return status == STATUS.in_progress ? COLORS.black : COLORS.white
+    }
+
+    function getCornerIcon() {
+        if (!leaf) {
+            return <TouchableOpacity
+            style={styles.icon}
+            onPress={() => expandStep()}
+            >
+                <Image 
+                source={require('./../../assets/dropdownIcon.png')}
+                style={
+                    [
+                        styles.dropdownIcon,
+                        {transform: [{ rotate: setDropdownRotation()}]}
+                    ]
+                }
+                />
+            </TouchableOpacity>
+        } else {
+            return <TouchableOpacity
+            style={styles.icon}
+            onPress={() => navigation.navigate('Extra Resources')}
+            >
+                <Image 
+                source={require('./../../assets/extraResources.png')}
+                style={styles.extraResourcesIcon}
+                />
+            </TouchableOpacity>
+        }
+    }
+
+    async function expandStep() {
         dispatch(expand({
             timelineName: timelineName,
-            name: name
+            id: id
         }))
 
         await delay(0)
         this.updateTimeline()
     }
 
-    function bruh() {
+    async function statusUpdate() {
+        dispatch(toggleStatus({
+            timelineName: timelineName,
+            id: id
+        }))
+
+        await delay(0)
         this.updateTimeline()
     }
 
     return <TouchableOpacity
-        style={[styles.touchable, {width: getWidth()}]}
-        onPress={() => stepPressed()}
+        style={[styles.touchable, {width: getWidth(), backgroundColor: getStatusColor()}]}
+        onPress={() => expandStep()}
+        onLongPress={() => statusUpdate()}
         >
         <View style={[styles.stepView]}>
-            <Text style={styles.stepName}>{name}</Text>
+            <Text style={[styles.stepName, {color: getNameColor()}]}>{name}</Text>
             <View style={styles.iconsView}>
                 <TouchableOpacity
-                style={styles.icon}
-                onPress={() => console.log("Change status")}
+                style={[styles.icon, getStatusIconPos()]}
+                onPress={() => statusUpdate()}
                 >
                     <Image 
-                    source={require('./../../assets/inprogress.png')}
+                    source={getStatusIcon()}
                     style={styles.statusIcon}
                     />
                 </TouchableOpacity>
                 
-                <TouchableOpacity
-                style={styles.icon}
-                onPress={() => console.log("expand")}
-                >
-                    <Image 
-                    source={require('./../../assets/dropdownIcon.png')}
-                    style={styles.dropdownIcon}
-                    />
-                </TouchableOpacity>
+                <View style={styles.iconBuffer}/>
+
+                {getCornerIcon()}
             </View>
         </View>
     </TouchableOpacity>
@@ -91,22 +147,38 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignContent: 'center',
         justifyContent: 'center',
+        backgroundColor: COLORS.foreground,
+        borderTopRightRadius: 25,
+        borderBottomRightRadius: 25
     },
     icon: {
         flex: 1,
         justifyContent: "flex-end"
     },
     statusIcon: {
-        height: 15,
-        width: 45,
+        height: 30,
+        width: 30,
         alignSelf: 'center',
-        marginBottom: 10,
+        marginBottom: 5,
     },
     dropdownIcon: {
         height: 30,
         width: 30,
         resizeMode: 'center',
         alignSelf: 'center',
-        marginBottom: 5
+        marginBottom: 5,
     },
+    extraResourcesIcon: {
+        height: 30,
+        width: 30,
+        resizeMode: 'center',
+        alignSelf: 'center',
+        marginBottom: 5,
+    },
+    iconBuffer: {
+        height: 2,
+        backgroundColor: COLORS.gray,
+        width: '80%',
+        alignSelf: "center"
+    }
 })

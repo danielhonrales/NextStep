@@ -4,6 +4,7 @@ import { FONTS } from "../fonts";
 import { COLORS } from "../colors";
 import { ScrollView, TouchableOpacity, Image, Modal, StyleSheet, View, Button } from "react-native"
 import { TimelineStep } from "./TimelimeStep";
+import { STATUS } from "../Status";
 
 export function TimelinePage({route, navigation}) {
     const stepsInfo = useSelector(state => state.timelines[route.params.name].steps)
@@ -12,6 +13,7 @@ export function TimelinePage({route, navigation}) {
 
     updateTimeline = () => {
         newSteps = buildSteps([],  stepsInfo, 0)
+        
         setSteps(newSteps)
     }
 
@@ -19,10 +21,15 @@ export function TimelinePage({route, navigation}) {
         stepsInfo.forEach(stepInfo => {
             // Add new step
             stepList.push(<TimelineStep 
+                navigation={navigation}
                 timelineName={route.params.name} 
+                id={stepInfo.id}
                 name={stepInfo.name} 
                 level={level.toString()}
                 updateTimeline={this.updateTimeline}
+                expanded={stepInfo.expanded}
+                status={stepInfo.status}
+                leaf={stepInfo.substeps.length == 0}
                 key={stepInfo.id}/>
                 );
 
@@ -34,15 +41,53 @@ export function TimelinePage({route, navigation}) {
         return stepList
     }
 
-    return <ScrollView contentContainerStyle={styles.pageView}>
-        {steps}
-    </ScrollView>
+    return <View style={styles.pageView}>
+        
+        <View style={styles.arrowLine}/>
+        <Image 
+        source={require('./../../assets/arrowHead.png')}
+        style={styles.arrowIcon}
+        />
+        <View style={styles.cutoffView}>
+            <ScrollView ref={ref => {this.scrollView = ref}} onContentSizeChange={() => this.scrollView.scrollToEnd({animated: true})} contentContainerStyle={styles.timelineView}>
+                
+                {steps}
+            </ScrollView>
+        </View>
+    </View>
 }
 
 const styles = StyleSheet.create({
     pageView: {
         width: '100%',
-        alignItems: 'flex-end',
-        fontFamily: 'Damascus'
+        height: '100%',
+        flexDirection: 'row'
     },
+    cutoffView: {
+        width: '100%',
+        height: '100%'
+    },
+    timelineView: {
+        width: '100%',
+        alignItems: 'flex-end',
+        fontFamily: 'Damascus',
+        minHeight: '100%',
+        paddingTop: 100
+    },
+    arrowLine: {
+        backgroundColor: "#AFAFAF",
+        width: 4,
+        height: '97%',
+        position: "absolute",
+        alignSelf: 'flex-start',
+        marginLeft: 30,
+        zIndex: -1
+    },
+    arrowIcon: {
+        height: 30,
+        width: 30,
+        position: "absolute",
+        alignSelf: "flex-end",
+        marginLeft: 17,
+    }
 })
