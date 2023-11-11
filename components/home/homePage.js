@@ -1,42 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, TouchableOpacity, View, StyleSheet } from "react-native";
 import { COLORS } from "../colors";
 import { ChatButton } from "../groupChat/ChatButton";
 import { TimelineButton } from "./TimelineButton";
+import { CurrentTimeline } from "./currentTimeline";
+import { PastTimeline } from "./pastTimeline";
 import { STATUS } from "../Status";
 import { FONTS } from "../fonts";
 
 export function HomePage({ navigation }) {
+  const [selectedGoal, setSelectedGoal] = useState(null);
+
+  // Displays the designated timelines
+  const displayGoals = () => {
+    if (selectedGoal === "current") {
+      return <CurrentTimeline />;
+    } else if (selectedGoal === "past") {
+      return <PastTimeline />;
+    } else {
+      return <CurrentTimeline />;
+    }
+  };
+
   return (
     <View style={styles.container}>
-      <View style={styles.timelineContainers}>
-        <Text style={styles.title}>Current Timelines</Text>
-        <View style={styles.currentTimelinecontainer}>
-          <TimelineButton 
-          navigation={navigation} 
-          name="House Hunting"
-          status={STATUS.in_progress}
-          />
-          <Text style={styles.textSection}>Getting first house</Text>
-          <Text style={styles.textSection}>Filler Timeline</Text>
-        </View>
-      </View>
-
-      <TouchableOpacity
-        style={styles.createTimelineButton}
-        onPress={() => navigation.navigate('TimelineCreationPage')}
+      <View style={styles.navBar}>
+        <TouchableOpacity
+          style={styles.navBarButtons}
+          onPress={() => setSelectedGoal("current")}
         >
-        <Text style={styles.createTimeline}>Create Timeline</Text>
-      </TouchableOpacity>
+          <Text style={styles.buttonText}>Current Timelines</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.navBarButtons}
+          onPress={() => setSelectedGoal("past")}
+        >
+          <Text style={styles.buttonText}>Past Timelines</Text>
+        </TouchableOpacity>
 
-      <View style={styles.timelineContainers}>
-        <Text style={styles.title}>Past Timelines</Text>
-        <View style={styles.pastTimelinecontainer}>
-          <Text style={styles.textSection}>Filler Timeline</Text>
-          <Text style={styles.textSection}>Filler Timeline</Text>
-        </View>
+        <TouchableOpacity
+          style={styles.createTimelineButton}
+          onPress={() => navigation.navigate("TimelineCreationPage")}
+        >
+          <Text style={styles.createTimelineText}>Create Timeline</Text>
+        </TouchableOpacity>
       </View>
 
+      {displayGoals()}
       <View style={styles.chatButton}>
         <ChatButton navigation={navigation} />
       </View>
@@ -47,66 +57,47 @@ export function HomePage({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    color: COLORS.background,
+    backgroundColor: COLORS.white,
   },
-  currentTimelinecontainer: {
-    flex: 1,
+  navBar: {
+    marginTop: 25,
     flexDirection: "row",
-    width: 300,
-    height: 250,
-    borderRadius: 25,
-    borderWidth: 3,
-    borderColor: "black",
-    alignItems: "center",
+    justifyContent: "flex-start",
+    justifyContent: "center"
   },
-  pastTimelinecontainer: {
-    flex: 1,
-    flexDirection: "row",
-    width: 300,
-    height: 250,
-    borderRadius: 25,
-    borderWidth: 3,
-    borderColor: "black",
-    alignItems: "center",
-  },
-  timelineContainers: {
-    flex: 1,
-    alignItems: "center",
-    margin: 25,
-  },
-  textSection: {
+  navBarButtons: {
+    height: 35,
     width: 100,
-    height: 100,
-    borderWidth: 3,
-    borderColor: "black",
-    borderRadius: 6,
-    margin: 23,
-    textAlign: "center",
-    paddingTop: 33,
+    borderRadius: 15,
+    backgroundColor: COLORS.foreground,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingBottom: 3,
+    marginLeft: 12
   },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold"
+  buttonText: {
+    color: "black",
+    fontSize: 11,
+    fontWeight: "700",
   },
   chatButton: {
-    alignSelf: 'flex-end',
-    margin: 10
+    alignSelf: "flex-end",
+    margin: 10,
   },
   createTimelineButton: {
-    width: 75,
-    height: 30,
-    borderRadius: 20,
-    alignContent: 'center',
-    alignSelf: 'center'
-  },
-  createTimeline: {
-    width: 150,
-    height: 30,
-    borderRadius: 20,
-    fontSize: FONTS.fontSize,
-    color: COLORS.white,
+    height: 35,
+    width: 100,
+    borderRadius: 15,
     backgroundColor: COLORS.highlight,
-    textAlign: "center",
-    textAlignVertical: 'center'
+    alignItems: "center",
+    justifyContent: "center",
+    paddingBottom: 3,
+    marginLeft: 17
+  },
+  createTimelineText: {
+    color: COLORS.white,
+    fontSize: 11,
+    fontWeight: "700"
   }
+  
 });
