@@ -6,9 +6,12 @@ import { useDispatch } from 'react-redux';
 import { expand } from "../redux/timelinesSlice";
 import React, { useState } from "react"
 
-export function TimelineStep({timelineName, name, level}) {
-    const [task, setTask] = useState('')
+export function TimelineStep({timelineName, name, level, updateTimeline}) {
     const dispatch = useDispatch()
+
+    const delay = ms => new Promise(
+        resolve => setTimeout(resolve, ms)
+    );
 
     function getWidth() {
         value = 90 - (level * 10);
@@ -16,12 +19,18 @@ export function TimelineStep({timelineName, name, level}) {
         return percentage
     }
 
-    function stepPressed() {
+    async function stepPressed() {
         dispatch(expand({
             timelineName: timelineName,
             name: name
         }))
-        
+
+        await delay(0)
+        this.updateTimeline()
+    }
+
+    function bruh() {
+        this.updateTimeline()
     }
 
     return <TouchableOpacity
@@ -57,7 +66,7 @@ export function TimelineStep({timelineName, name, level}) {
 
 const styles = StyleSheet.create({
     touchable: {
-        borderWidth: 3,
+        borderWidth: 2,
         borderColor: COLORS.black,
         alignItems: 'center',
         justifyContent: 'center',

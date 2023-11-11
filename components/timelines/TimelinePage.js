@@ -2,12 +2,18 @@ import React, { useState } from "react"
 import { useSelector } from 'react-redux';
 import { FONTS } from "../fonts";
 import { COLORS } from "../colors";
-import { ScrollView, TouchableOpacity, Image, Modal, StyleSheet, View } from "react-native"
+import { ScrollView, TouchableOpacity, Image, Modal, StyleSheet, View, Button } from "react-native"
 import { TimelineStep } from "./TimelimeStep";
 
 export function TimelinePage({route, navigation}) {
     const stepsInfo = useSelector(state => state.timelines[route.params.name].steps)
     const [steps, setSteps] = useState(buildSteps([], stepsInfo, 0))
+    const [task, updateScreen] = useState(1)
+
+    updateTimeline = () => {
+        newSteps = buildSteps([],  stepsInfo, 0)
+        setSteps(newSteps)
+    }
 
     function buildSteps(stepList, stepsInfo, level) {
         stepsInfo.forEach(stepInfo => {
@@ -15,7 +21,8 @@ export function TimelinePage({route, navigation}) {
             stepList.push(<TimelineStep 
                 timelineName={route.params.name} 
                 name={stepInfo.name} 
-                level={level.toString()} 
+                level={level.toString()}
+                updateTimeline={this.updateTimeline}
                 key={stepInfo.id}/>
                 );
 

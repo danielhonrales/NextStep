@@ -35,7 +35,7 @@ export function ChatPage({navigation}) {
     }
 
     async function sendAutomatedResponse(newFeed) {
-        await delay(2000)
+        await delay(1500)
         const newerFeed = newFeed.concat(<Message user={otherUser} text={automatedResponse} handleModal={() => setProfileModelVisible(true)} key={otherUser + getMessageTimestamp()}/>)
         onMessageSent(newerFeed)
     }
