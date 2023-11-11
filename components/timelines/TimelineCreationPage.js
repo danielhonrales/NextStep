@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import { FONTS } from "../fonts";
 import { COLORS } from "../colors";
 import { Text, TouchableOpacity, TextInput, Image, Modal, StyleSheet, View, ScrollView } from "react-native"
-import { TimelineStep } from "./TimelimeStep";
 import { useSelector, useDispatch } from 'react-redux';
 import { STATUS } from "../Status";
 import { addStep } from "../redux/timelinesSlice";
@@ -15,12 +14,6 @@ export function TimelineCreationPage({route, navigation}) {
     const dispatch = useDispatch()
 
     const [name, setName] = React.useState('');
-
-    updateTimeline = () => {
-        newSteps = buildSteps([],  stepsInfo, 0)
-        
-        setSteps(newSteps)
-    }
 
     function buildSteps(stepList, stepsInfo, level) {
         stepsInfo.forEach(stepInfo => {
@@ -43,18 +36,18 @@ export function TimelineCreationPage({route, navigation}) {
         return stepList
     }
 
-    function addDummyStep() {
-        dispatch(addStep(
-            {
-                timelineName: "House Hunting",
-                step: {
-                    id: 0,
-                    name: 'stepbruh',
-                    status: STATUS.in_progress,
-                    substeps: []
-                }
-            }
-        ))
+    function addNewStep() {
+        dispatch(addStep({
+            timelineName: "NewTimeline"
+        }))
+        console.log('new step')
+        updateCreatedTimeline()
+    }
+
+    updateCreatedTimeline = () => {
+        newSteps = buildSteps([],  stepsInfo, 0)
+        
+        setSteps(newSteps)
     }
 
     return (
@@ -78,9 +71,10 @@ export function TimelineCreationPage({route, navigation}) {
                 <ScrollView ref={ref => {this.scrollView = ref}} onContentSizeChange={() => this.scrollView.scrollToEnd({animated: true})} contentContainerStyle={styles.scrollView}>
 
                     {steps}
+
                     <TouchableOpacity
                     style={styles.newStepButton}
-                    onPress={() => addDummyStep }
+                    onPress={() => addNewStep() }
                     >
                         <Text style={styles.newStep}>New step</Text>
                     </TouchableOpacity>

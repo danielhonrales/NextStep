@@ -42,8 +42,8 @@ export function CreatedStep({timelineName, id, name, level, status}) {
             />
             <View style={styles.iconsView}>
                 <TouchableOpacity
-                style={[styles.icon, getStatusIconPos()]}
-                onPress={() => statusUpdate()}
+                style={styles.icon}
+                onPress={() => console.log('delete')}
                 >
                     <Image 
                     source={require('./../../assets/extraResources.png')}

@@ -9,11 +9,6 @@ export const timelinesSlice = createSlice({
      'id': 0
   },
   reducers: {
-      // Adds step to timeline's list of steps
-      addStep: (state, action) => {
-        state[action.payload.timelineName].steps.push(action.payload.step)
-      },
-
       // Toggles expanded state of step in a timeline
       expand: (state, action) => {
         timeline = state[action.payload.timelineName]
@@ -40,7 +35,6 @@ export const timelinesSlice = createSlice({
           status: STATUS.in_progress,
           steps: []
         }
-        console.log(timelineName)
       },
 
       // Changes name of astep
@@ -48,7 +42,20 @@ export const timelinesSlice = createSlice({
         timeline = state[action.payload.timelineName]
         step = findStep(timeline.steps, action.payload.id)
         step.name = action.payload.newName
-      }
+      },
+
+      // Adds step to timeline's list of steps
+      addStep: (state, action) => {
+        state[action.payload.timelineName].steps.push(
+          {
+            id: "NewStep" + state.id++, 
+            name: '', 
+            status: STATUS.in_progress, 
+            substeps: [],
+            expanded: false
+          }
+        )
+      },
   }
 })
 
