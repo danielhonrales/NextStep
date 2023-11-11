@@ -10,7 +10,7 @@ import {
 import { COLORS } from "../colors";
 
 
-export function PastTimeline() {
+export function PastTimeline({navigation}) {
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -99,6 +99,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     paddingLeft: 15,
     paddingTop: 6,
-    fontFamily: 'monospace'
+    fontFamily: 'Damascus'
   },
 });

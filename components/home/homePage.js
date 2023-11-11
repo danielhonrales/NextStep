@@ -14,11 +14,11 @@ export function HomePage({ navigation }) {
   // Displays the designated timelines
   const displayGoals = () => {
     if (selectedGoal === "current") {
-      return <CurrentTimeline />;
+      return <CurrentTimeline navigation={navigation}/>;
     } else if (selectedGoal === "past") {
-      return <PastTimeline />;
+      return <PastTimeline navigation={navigation}/>;
     } else {
-      return <CurrentTimeline />;
+      return <CurrentTimeline navigation={navigation}/>;
     }
   };
 
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   },
   navBarButtons: {
     height: 35,
-    width: 100,
+    width: 110,
     borderRadius: 15,
     backgroundColor: COLORS.foreground,
     alignItems: "center",

@@ -17,14 +17,16 @@ const determinePreferencesStep = {
             status: STATUS.in_progress,
             substeps: []
         },
-    ]
+    ],
+    expanded: false
 }
 
 const findCandidatesStep = {
     id: "HouseHunting-1", 
     name: "Find Candidates", 
     status: STATUS.in_progress, 
-    substeps: []
+    substeps: [],
+    expanded: false
 }
 
 const securePropertyStep = {
@@ -38,7 +40,8 @@ const securePropertyStep = {
             status: STATUS.in_progress,
             substeps: []
         },
-    ]
+    ],
+    expanded: false
 }
 
 export const houseHuntingTimeline = {

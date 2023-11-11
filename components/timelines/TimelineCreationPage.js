@@ -8,17 +8,22 @@ import { STATUS } from "../Status";
 import { addStep } from "../redux/timelinesSlice";
 
 export function TimelineCreationPage({navigation, name, steps}) {
+    const [task, setTask] = useState('');
     const dispatch = useDispatch()
 
-    const addDummyStep = dispatch(addStep({
-        timelineName: "House Hunting",
-        step: {
-            id: 0,
-            name: 'stepbruh',
-            status: STATUS.in_progress,
-            substeps: []
-        }
-    }))
+    function addDummyStep() {
+        dispatch(addStep(
+            {
+                timelineName: "House Hunting",
+                step: {
+                    id: 0,
+                    name: 'stepbruh',
+                    status: STATUS.in_progress,
+                    substeps: []
+                }
+            }
+        ))
+    }
 
     return (
         <TouchableOpacity

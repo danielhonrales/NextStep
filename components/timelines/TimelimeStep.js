@@ -2,18 +2,33 @@ import { TouchableOpacity, View, Image, Text, StyleSheet } from "react-native"
 import { FONTS } from "../fonts"
 import { COLORS } from "../colors"
 import { STATUS } from "../Status"
-import React from "react"
+import { useDispatch } from 'react-redux';
+import { expand } from "../redux/timelinesSlice";
+import React, { useState } from "react"
 
-export function TimelineStep({name}) {
-    const [status, setStatus] = React.useState(STATUS.in_progress)
-    const [expanded, setExpanded] = React.useState(false);
-    const [substeps, setSubsteps] = React.useState([])
+export function TimelineStep({timelineName, name, level}) {
+    const [task, setTask] = useState('')
+    const dispatch = useDispatch()
+
+    function getWidth() {
+        value = 90 - (level * 10);
+        percentage = value.toString() + "%"
+        return percentage
+    }
+
+    function stepPressed() {
+        dispatch(expand({
+            timelineName: timelineName,
+            name: name
+        }))
+        
+    }
 
     return <TouchableOpacity
-        style={styles.touchable}
-        onPress={() => console.log("Open step breakdown")}
+        style={[styles.touchable, {width: getWidth()}]}
+        onPress={() => stepPressed()}
         >
-        <View style={styles.stepView}>
+        <View style={[styles.stepView]}>
             <Text style={styles.stepName}>{name}</Text>
             <View style={styles.iconsView}>
                 <TouchableOpacity
@@ -49,7 +64,7 @@ const styles = StyleSheet.create({
         width: '90%',
         height: 100,
         borderRadius: 25,
-        margin: 10
+        margin: 10,
     },
     stepView: {
         flex: 1,
@@ -60,7 +75,7 @@ const styles = StyleSheet.create({
         fontSize: FONTS.titleSize,
         alignSelf: 'center',
         paddingLeft: 10,
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
     },
     iconsView: {
         flex: 1,

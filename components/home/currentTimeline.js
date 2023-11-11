@@ -10,7 +10,7 @@ import {
 import { COLORS } from "../colors";
 
 
-export function CurrentTimeline() {
+export function CurrentTimeline({navigation}) {
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -21,7 +21,8 @@ export function CurrentTimeline() {
           />
           <View style={styles.description}>
             <Text style={styles.timelineText}>House Hunting</Text>
-            <TouchableOpacity style={styles.viewButton}>
+            <TouchableOpacity style={styles.viewButton}
+            onPress={() => navigation.navigate('TimelinePage', {navigation: navigation, name: "House Hunting"})}>
               <Text style={styles.viewText}>View</Text>
             </TouchableOpacity>
           </View>
@@ -99,6 +100,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     paddingLeft: 15,
     paddingTop: 6,
-    fontFamily: 'monospace'
+    fontFamily: 'Damascus'
   },
 });

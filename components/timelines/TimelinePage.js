@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { FONTS } from "../fonts";
 import { COLORS } from "../colors";
 import { ScrollView, TouchableOpacity, Image, Modal, StyleSheet, View } from "react-native"
@@ -7,26 +7,35 @@ import { TimelineStep } from "./TimelimeStep";
 
 export function TimelinePage({route, navigation}) {
     const stepsInfo = useSelector(state => state.timelines[route.params.name].steps)
-    const [steps, setSteps] = useState(buildSteps(stepsInfo))
+    const [steps, setSteps] = useState(buildSteps([], stepsInfo, 0))
 
-    function buildSteps(stepsInfo) {
-        stepList = []
+    function buildSteps(stepList, stepsInfo, level) {
         stepsInfo.forEach(stepInfo => {
-            stepList.push(<TimelineStep name={stepInfo.name} key={stepInfo.id}/>);
-            
+            // Add new step
+            stepList.push(<TimelineStep 
+                timelineName={route.params.name} 
+                name={stepInfo.name} 
+                level={level.toString()} 
+                key={stepInfo.id}/>
+                );
+
+            // Recursively add substeps if exist and expanded
+            if (stepInfo.substeps.length != 0 && stepInfo.expanded == true) {
+                substeps = buildSteps(stepList, stepInfo.substeps, level + 1)
+            }
         });
         return stepList
     }
 
-    return <View style={styles.pageView}>
+    return <ScrollView contentContainerStyle={styles.pageView}>
         {steps}
-    </View>
+    </ScrollView>
 }
 
 const styles = StyleSheet.create({
     pageView: {
-        height: '100%',
         width: '100%',
         alignItems: 'flex-end',
+        fontFamily: 'Damascus'
     },
 })
