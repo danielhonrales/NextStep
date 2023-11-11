@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     name: {
-        fontSize: FONTS.subtitleSize,
+        fontSize: FONTS.textSize,
         borderWidth: 3,
         borderColor: COLORS.black,
         borderRadius: 6,

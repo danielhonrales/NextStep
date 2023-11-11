@@ -48,4 +48,20 @@ const styles = StyleSheet.create({
         textAlign: "center",
         textAlignVertical: 'center'
     },
+    touchable: {
+        width: 100,
+        height: 100,
+        margin: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    name: {
+        fontSize: FONTS.subtitleSize,
+        borderWidth: 3,
+        borderColor: COLORS.black,
+        borderRadius: 6,
+        paddingTop: 20,
+        paddingBottom: 20,
+        textAlign: "center"
+    },
 })
