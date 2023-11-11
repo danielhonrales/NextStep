@@ -10,6 +10,7 @@ export function QuickReferences({ navigation, suggestions, users }) {
       <ScrollView
         vertical={true}
         contentContainerStyle={styles.suggestionHolder}
+        showsVerticalScrollIndicator={false}
       >
         <View style={styles.referenceBoxes}>
           <Text style={styles.titles}>
@@ -48,17 +49,18 @@ export function QuickReferences({ navigation, suggestions, users }) {
 
 const styles = StyleSheet.create({
   referenceBoxes: {
-    width: 300,
+    width: 340,
     height: 100,
-    borderWidth: 4,
+    borderWidth: 2,
     borderRadius: 15,
     padding: 3,
     backgroundColor: "#FFF",
     marginBottom: 10,
+    elevation: 2,
   },
   verticalBorder: {
     width: "100%",
-    height: "67%",
+    height: "64%",
     alignItems: "center",
   },
   suggestionHolder: {

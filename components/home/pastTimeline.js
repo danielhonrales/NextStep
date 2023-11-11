@@ -99,6 +99,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     paddingLeft: 15,
     paddingTop: 6,
-    fontFamily: 'Damascus'
+    fontFamily: 'monospace'
   },
 });

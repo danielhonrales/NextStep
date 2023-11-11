@@ -22,7 +22,7 @@ export function ResourcesPage({ navigation }) {
         <Text style={styles.titleText}>Quick References</Text>
         <Image
           source={require("./../../assets/verticalScroll.png")}
-          style={styles.horizontalScroll}
+          style={styles.verticalScroll}
         />
       </View>
       <QuickReferences />
@@ -38,16 +38,24 @@ const styles = StyleSheet.create({
   titleSection: {
     flexDirection: "row",
     alignItems: "flex-end",
-    paddingLeft: 10,
+    marginLeft: 16,
+    alignItems: "center",
+    marginBottom: 4,
   },
   horizontalScroll: {
     height: 45,
     width: 45,
   },
+  verticalScroll: {
+    height: 40,
+    width: 25,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   titleText: {
     fontSize: 22,
     fontStyle: "italic",
-    padding: 10,
-    fontWeight: "bold",
+    padding: 1,
+    fontWeight: "400",
   },
 });

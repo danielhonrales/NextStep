@@ -26,6 +26,7 @@ export default function App() {
           <Stack.Screen name="ChatPage" component={ChatPage}/>
           <Stack.Screen name="TimelinePage" component={TimelinePage}/>
           <Stack.Screen name="TimelineCreationPage" component={TimelineCreationPage}/>
+          <Stack.Screen name="ResourcesPage" component={ResourcesPage}/>
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
