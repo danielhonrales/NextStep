@@ -5,14 +5,10 @@ import { houseHuntingTimeline } from "./Timeline-HouseHunting";
 export const timelinesSlice = createSlice({
   name: 'timelines',
   initialState: {
-     "House Hunting": houseHuntingTimeline
+     "House Hunting": houseHuntingTimeline,
+     'id': 0
   },
   reducers: {
-      // Adds step to timeline's list of steps
-      addStep: (state, action) => {
-        state[action.payload.timelineName].steps.push(action.payload.step)
-      },
-
       // Toggles expanded state of step in a timeline
       expand: (state, action) => {
         timeline = state[action.payload.timelineName]
@@ -26,11 +22,39 @@ export const timelinesSlice = createSlice({
       toggleStatus: (state, action) => {
         timeline = state[action.payload.timelineName]
         step = findStep(timeline.steps, action.payload.id)
-        console.log('found')
-        console.log(step)
         if (step != null) {
           step.status = (step.status == STATUS.in_progress) ? STATUS.done : STATUS.in_progress
         }
+      },
+
+      // Creates a new empty timeline
+      newTimeline: (state, action) => {
+        timelineName = 'NewTimeline'
+        state[timelineName] = {
+          name: timelineName,
+          status: STATUS.in_progress,
+          steps: []
+        }
+      },
+
+      // Changes name of astep
+      changeStepName: (state, action) => {
+        timeline = state[action.payload.timelineName]
+        step = findStep(timeline.steps, action.payload.id)
+        step.name = action.payload.newName
+      },
+
+      // Adds step to timeline's list of steps
+      addStep: (state, action) => {
+        state[action.payload.timelineName].steps.push(
+          {
+            id: "NewStep" + state.id++, 
+            name: '', 
+            status: STATUS.in_progress, 
+            substeps: [],
+            expanded: false
+          }
+        )
       },
   }
 })
@@ -50,5 +74,5 @@ function findStep(steps, id) {
   return foundStep
 }
 
-export const { addStep, expand, toggleStatus } = timelinesSlice.actions
+export const { addStep, expand, toggleStatus, changeStepName, newTimeline } = timelinesSlice.actions
 export default timelinesSlice.reducer

@@ -7,9 +7,22 @@ import { CurrentTimeline } from "./currentTimeline";
 import { PastTimeline } from "./pastTimeline";
 import { STATUS } from "../Status";
 import { FONTS } from "../fonts";
+import { newTimeline } from "../redux/timelinesSlice";
+import { useSelector, useDispatch } from 'react-redux';
 
 export function HomePage({ navigation }) {
+  const dispatch = useDispatch()
   const [selectedGoal, setSelectedGoal] = useState(null);
+
+  const delay = ms => new Promise(
+    resolve => setTimeout(resolve, ms)
+  );
+
+  async function makeNewTimeline() {
+    dispatch(newTimeline())
+
+    await delay(0)
+}
 
   // Displays the designated timelines
   const displayGoals = () => {
@@ -40,7 +53,11 @@ export function HomePage({ navigation }) {
 
         <TouchableOpacity
           style={styles.createTimelineButton}
-          onPress={() => navigation.navigate("TimelineCreationPage")}
+          onPress={() => {
+              makeNewTimeline()
+              navigation.navigate("TimelineCreationPage", {name: "NewTimeline"})
+            }
+          }
         >
           <Text style={styles.createTimelineText}>Create Timeline</Text>
         </TouchableOpacity>

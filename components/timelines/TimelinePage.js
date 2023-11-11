@@ -52,6 +52,7 @@ export function TimelinePage({route, navigation}) {
             <ScrollView ref={ref => {this.scrollView = ref}} onContentSizeChange={() => this.scrollView.scrollToEnd({animated: true})} contentContainerStyle={styles.timelineView}>
                 
                 {steps}
+                <View style={{height: 20}}/>
             </ScrollView>
         </View>
     </View>
