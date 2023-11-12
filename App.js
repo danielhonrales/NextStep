@@ -12,11 +12,15 @@ import { TimelineCreationPage } from './components/timelines/TimelineCreationPag
 import { LoginPage } from './components/login/loginPage';
 import { Provider } from 'react-redux';
 import store from './components/redux/store';
+import { LogBox } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   
+  LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+  LogBox.ignoreAllLogs();//Ignore all log notifications
+
   return (  
     <Provider store={store}>
       <NavigationContainer>
