@@ -3,25 +3,37 @@ import { FONTS } from "../fonts"
 import { COLORS } from "../colors"
 import { STATUS } from "../Status"
 import { useSelector, useDispatch } from 'react-redux';
-import { changeStepName, expand, toggleStatus } from "../redux/timelinesSlice";
+import { changeStepName, expand, toggleStatus, deleteStep } from "../redux/timelinesSlice";
 import React, { useState } from "react"
 
-export function CreatedStep({timelineName, id, name, level, status}) {
+export function CreatedStep({timelineName, id, name, level, status, updateCreatedTimeline}) {
     const dispatch = useDispatch()
+    const [stepName, setName] = useState(name)
 
     const delay = ms => new Promise(
         resolve => setTimeout(resolve, ms)
     );
 
-    async function changeName(newName) {
+    async function changeName() {
+        setName()
         dispatch(changeStepName({
             timelineName: timelineName,
             id: id,
-            newName: newName
+            newName: stepName
         }))
 
         await delay(0)
-        this.updateTimeline()
+        this.updateCreatedTimeline()
+    }
+
+    async function deleteThisStep() {
+        dispatch(deleteStep({
+            timelineName: timelineName,
+            id: id,
+        }))
+
+        await delay(0)
+        this.updateCreatedTimeline()
     }
 
     function getWidth() {
@@ -35,18 +47,18 @@ export function CreatedStep({timelineName, id, name, level, status}) {
 
             <TextInput
                 style={styles.stepName}
-                onChangeText={changeName(name)}
-                value={name}
+                onChangeText={changeName}
+                value={stepName}
                 placeholder="Name this step..."
                 multiline={false}
             />
             <View style={styles.iconsView}>
                 <TouchableOpacity
                 style={styles.icon}
-                onPress={() => console.log('delete')}
+                onPress={() => deleteThisStep()}
                 >
                     <Image 
-                    source={require('./../../assets/extraResources.png')}
+                    source={require('./../../assets/x.png')}
                     style={styles.xIcon}
                     />
                 </TouchableOpacity>
@@ -66,6 +78,7 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         margin: 10,
         flexDirection: 'row',
+        backgroundColor: COLORS.white
     },
     stepName: {
         flex: 4,

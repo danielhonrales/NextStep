@@ -21,7 +21,9 @@ export function PastTimeline({navigation}) {
           />
           <View style={styles.description}>
             <Text style={styles.timelineText}>First Baby</Text>
-            <TouchableOpacity style={styles.viewButton}>
+            <TouchableOpacity 
+            style={styles.viewButton}
+            onPress={() => navigation.navigate('TimelinePage', {navigation: navigation, name: "Filler Timeline"})}>
               <Text style={styles.viewText}>View</Text>
             </TouchableOpacity>
           </View>
@@ -33,7 +35,9 @@ export function PastTimeline({navigation}) {
           />
           <View style={styles.description}>
             <Text style={styles.timelineText}>Buying a Car</Text>
-            <TouchableOpacity style={styles.viewButton}>
+            <TouchableOpacity 
+            style={styles.viewButton}
+            onPress={() => navigation.navigate('TimelinePage', {navigation: navigation, name: "Filler Timeline"})}>
               <Text style={styles.viewText}>View</Text>
             </TouchableOpacity>
           </View>
@@ -45,7 +49,9 @@ export function PastTimeline({navigation}) {
           />
           <View style={styles.description}>
             <Text style={styles.timelineText}>First Credit Card</Text>
-            <TouchableOpacity style={styles.viewButton}>
+            <TouchableOpacity 
+            style={styles.viewButton}
+            onPress={() => navigation.navigate('TimelinePage', {navigation: navigation, name: "Filler Timeline"})}>
               <Text style={styles.viewText}>View</Text>
             </TouchableOpacity>
           </View>

@@ -4,16 +4,22 @@ import { COLORS } from "../colors";
 import { Text, TouchableOpacity, TextInput, Image, Modal, StyleSheet, View, ScrollView } from "react-native"
 import { useSelector, useDispatch } from 'react-redux';
 import { STATUS } from "../Status";
-import { addStep } from "../redux/timelinesSlice";
+import { addStep, changeTimelineName } from "../redux/timelinesSlice";
 import { CreatedStep } from "./CreatedStep";
 
 export function TimelineCreationPage({route, navigation}) {
     const stepsInfo = useSelector(state => state.timelines[route.params.name].steps)
-    const [steps, setSteps] = useState(buildSteps([], stepsInfo, 0))
+    const [steps, setSteps] = React.useState(buildSteps([], stepsInfo, 0))
 
     const dispatch = useDispatch()
 
     const [name, setName] = React.useState('');
+
+    updateCreatedTimeline = () => {
+        newSteps = buildSteps([],  stepsInfo, 0)
+        
+        setSteps(newSteps)
+    }
 
     function buildSteps(stepList, stepsInfo, level) {
         stepsInfo.forEach(stepInfo => {
@@ -23,7 +29,7 @@ export function TimelineCreationPage({route, navigation}) {
                 id={stepInfo.id}
                 name={stepInfo.name} 
                 level={level.toString()}
-                updateTimeline={this.updateTimeline}
+                updateCreatedTimeline={this.updateCreatedTimeline}
                 status={stepInfo.status}
                 key={stepInfo.id}/>
                 );
@@ -33,55 +39,66 @@ export function TimelineCreationPage({route, navigation}) {
                 substeps = buildSteps(stepList, stepInfo.substeps, level + 1)
             }
         });
+
         return stepList
+    }
+
+    function completeTimeline(navigation) {
+        dispatch(changeTimelineName({
+            timelineName: "NewTimeline", 
+            newName: name
+        }))
+        navigation.goBack()
     }
 
     function addNewStep() {
         dispatch(addStep({
             timelineName: "NewTimeline"
         }))
-        console.log('new step')
+
         updateCreatedTimeline()
     }
 
-    updateCreatedTimeline = () => {
-        newSteps = buildSteps([],  stepsInfo, 0)
-        
-        setSteps(newSteps)
-    }
+    return <View style={styles.pageView}>
+        <View style={styles.arrowLine}/>
+        <Image 
+        source={require('./../../assets/arrowHead.png')}
+        style={styles.arrowIcon}
+        />
 
-    return (
-        <View style={styles.pageView}>
-            <View style={styles.arrowLine}/>
-            <Image 
-            source={require('./../../assets/arrowHead.png')}
-            style={styles.arrowIcon}
-            />
-
-            <View style={styles.mainView}>
-                <View style={styles.nameInputView}>
-                    <TextInput
-                        style={styles.nameInput}
-                        onChangeText={setName}
-                        value={name}
-                        placeholder="Set a name..."
-                        multiline={false}
-                    />
-                </View>
-                <ScrollView ref={ref => {this.scrollView = ref}} onContentSizeChange={() => this.scrollView.scrollToEnd({animated: true})} contentContainerStyle={styles.scrollView}>
-
-                    {steps}
-
-                    <TouchableOpacity
-                    style={styles.newStepButton}
-                    onPress={() => addNewStep() }
-                    >
-                        <Text style={styles.newStep}>New step</Text>
-                    </TouchableOpacity>
-                </ScrollView>
+        <View style={styles.mainView}>
+            <View style={styles.nameInputView}>
+                <TextInput
+                    style={styles.nameInput}
+                    onChangeText={setName}
+                    value={name}
+                    placeholder="Set a name..."
+                    multiline={false}
+                />
             </View>
+            <ScrollView ref={ref => {this.scrollView = ref}} onContentSizeChange={() => this.scrollView.scrollToEnd({animated: true})} contentContainerStyle={styles.scrollView}>
+
+                {steps}
+
+                <TouchableOpacity
+                style={styles.newStepButton}
+                onPress={() => addNewStep() }
+                >
+                    <Text style={styles.newStep}>New step</Text>
+                </TouchableOpacity>
+            </ScrollView>
         </View>
-    )
+
+        <TouchableOpacity
+        style={styles.doneButton}
+        onPress={() => completeTimeline(navigation)}
+        >
+            <Image 
+            source={require('./../../assets/done.png')}
+            style={styles.doneIcon}
+            />
+        </TouchableOpacity>
+    </View>
 }
 
 const styles = StyleSheet.create({
@@ -91,7 +108,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     }, 
     mainView: {
-        flex: 1
+        flex: 1,
     },
     nameInputView: {
         height: 75,
@@ -107,9 +124,7 @@ const styles = StyleSheet.create({
         fontSize: 32,
     },
     scrollView: {
-        height: '100%',
         width: '100%',
-        backgroundColor: 'white'
     },
     newStepButton: {
         width: 150,
@@ -144,5 +159,21 @@ const styles = StyleSheet.create({
         position: "absolute",
         alignSelf: "flex-end",
         marginLeft: 7,
+    },
+    doneButton: {
+        position: "absolute",
+        height: 50,
+        width: 50,
+        borderWidth: 2,
+        backgroundColor: COLORS.accent,
+        borderRadius: 25,
+        justifyContent: 'center',
+        alignSelf: 'flex-end',
+        marginLeft: 320,
+    },
+    doneIcon: {
+        height: 30,
+        width: 30,
+        alignSelf: 'center',
     }
 })

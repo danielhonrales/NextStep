@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Text,
   View,
@@ -8,25 +8,65 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { COLORS } from "../colors";
+import { useSelector, useDispatch } from 'react-redux';
 
 
 export function CurrentTimeline({navigation}) {
+  const timelinesInfo = useSelector(state => state.timelines)
+  const [dynamicTimelines, updateTimelines] = useState(buildTimelines([], timelinesInfo))
+
+  function buildTimelines(timelinesList, timelinesInfo) {
+    Object.values(timelinesInfo).forEach(timelineInfo => {
+      console.log(timelineInfo)
+      if (!Number.isInteger(timelineInfo)) {
+        if (timelineInfo.name == "House Hunting") {
+          timelinesList.push(
+            <View style={styles.timelineContainer}>
+              <Image
+                source={require("./../../assets/TimelineImages/HouseHunting.jpg")}
+                style={styles.images}
+              />
+              <View style={styles.description}>
+                <Text style={styles.timelineText}>{timelineInfo.name}</Text>
+                <TouchableOpacity 
+                style={styles.viewButton}
+                onPress={() => navigation.navigate('TimelinePage', {navigation: navigation, name: timelineInfo.name})}>
+                  <Text style={styles.viewText}>View</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+            );
+        } else {
+          timelinesList.push(
+          <View style={styles.timelineContainer}>
+            <Image
+              source={require("./../../assets/TimelineImages/timeline.jpg")}
+              style={styles.images}
+            />
+            <View style={styles.description}>
+              <Text style={styles.timelineText}>{timelineInfo.name}</Text>
+              <TouchableOpacity 
+              style={styles.viewButton}
+              onPress={() => navigation.navigate('TimelinePage', {navigation: navigation, name: "Filler Timeline"})}>
+                <Text style={styles.viewText}>View</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          );
+        }
+      }
+    });
+
+    return timelinesList
+}
+
+
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.timelineContainer}>
-          <Image
-            source={require("./../../assets/TimelineImages/HouseHunting.jpg")}
-            style={styles.images}
-          />
-          <View style={styles.description}>
-            <Text style={styles.timelineText}>House Hunting</Text>
-            <TouchableOpacity style={styles.viewButton}
-            onPress={() => navigation.navigate('TimelinePage', {navigation: navigation, name: "House Hunting"})}>
-              <Text style={styles.viewText}>View</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+
+        {dynamicTimelines}
+
         <View style={styles.timelineContainer}>
           <Image
             source={require("./../../assets/TimelineImages/WeddingPlanning.webp")}
@@ -34,7 +74,9 @@ export function CurrentTimeline({navigation}) {
           />
           <View style={styles.description}>
             <Text style={styles.timelineText}>Wedding Planning</Text>
-            <TouchableOpacity style={styles.viewButton}>
+            <TouchableOpacity 
+            style={styles.viewButton}
+            onPress={() => navigation.navigate('TimelinePage', {navigation: navigation, name: "Filler Timeline"})}>
               <Text style={styles.viewText}>View</Text>
             </TouchableOpacity>
           </View>
@@ -46,7 +88,9 @@ export function CurrentTimeline({navigation}) {
           />
           <View style={styles.description}>
             <Text style={styles.timelineText}>Retirement Plan</Text>
-            <TouchableOpacity style={styles.viewButton}>
+            <TouchableOpacity 
+            style={styles.viewButton}
+            onPress={() => navigation.navigate('TimelinePage', {navigation: navigation, name: "Filler Timeline"})}>
               <Text style={styles.viewText}>View</Text>
             </TouchableOpacity>
           </View>

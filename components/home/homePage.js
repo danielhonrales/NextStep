@@ -55,7 +55,7 @@ export function HomePage({ navigation }) {
           style={styles.createTimelineButton}
           onPress={() => {
               makeNewTimeline()
-              navigation.navigate("TimelineCreationPage", {name: "NewTimeline"})
+              navigation.navigate("Timeline Creation", {name: "NewTimeline"})
             }
           }
         >

@@ -23,9 +23,9 @@ export default function App() {
         <Stack.Navigator>
           <Stack.Screen name="Login" component={LoginPage}/>
           <Stack.Screen name="Home" component={HomePage}/>
-          <Stack.Screen name="ChatPage" component={ChatPage}/>
-          <Stack.Screen name="TimelinePage" component={TimelinePage}/>
-          <Stack.Screen name="TimelineCreationPage" component={TimelineCreationPage}/>
+          <Stack.Screen name="Chat" component={ChatPage}/>
+          <Stack.Screen name="TimelinePage" component={TimelinePage} options={({route}) => ({title: route.params.name})}/>
+          <Stack.Screen name="Timeline Creation" component={TimelineCreationPage}/>
           <Stack.Screen name="ResourcesPage" component={ResourcesPage}/>
         </Stack.Navigator>
       </NavigationContainer>

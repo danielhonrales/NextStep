@@ -5,7 +5,7 @@ export function ChatButton({navigation}) {
     return <TouchableOpacity
         title='Chat Button'
         style={styles.touchable}
-        onPress={() => navigation.navigate('ChatPage')}
+        onPress={() => navigation.navigate('Chat')}
         >
         <Image 
             source={require('./../../assets/chatButton.png')}
