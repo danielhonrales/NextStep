@@ -26,7 +26,6 @@ export function LoginPage({ navigation }) {
       >
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
-      <Text style={styles.forgotText}>Forgot Password?</Text>
     </View>
   );
 }
