@@ -25,7 +25,7 @@ export function TimelineStep({navigation, timelineName, id, name, level, expande
 
     
     function getStatusIcon() {
-        icon = status == STATUS.in_progress ? require('./../../assets/inprogress.png') : require('./../../assets/checkmark.png')
+        icon = status == STATUS.in_progress ? require('./../../assets/done.png') : require('./../../assets/checkmark.png')
         return icon
     }
 
