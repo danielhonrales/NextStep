@@ -1,15 +1,35 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   Text,
   View,
   StyleSheet,
   TextInput,
   Image,
+  Alert,
   TouchableOpacity,
 } from "react-native";
 import { COLORS } from "../colors";
 
 export function LoginPage({ navigation }) {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+
+  // Login credentials
+  const validUsername = 'user123';
+  const validPassword = 'password123'
+
+  // Handles the login button functionality
+  const handleLogin = () => {
+    // Checks if the entered credentials match the valid ones
+    if(username === validUsername && password === validPassword){
+      // Successful login, navigate to the next page
+      navigation.navigate("Home");
+    }
+    else{
+      Alert.alert('Login Failed', 'Invalid username or password')
+    }
+
+  }
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
@@ -18,11 +38,11 @@ export function LoginPage({ navigation }) {
           style={styles.logo}
         ></Image>
       </View>
-      <TextInput style={styles.textInput} placeholder="Username"></TextInput>
-      <TextInput style={styles.textInput} placeholder="Password"></TextInput>
+      <TextInput style={styles.textInput} placeholder="Username" onChangeText={(text) => setUsername(text)}></TextInput>
+      <TextInput style={styles.textInput} placeholder="Password" onChangeText={(text) => setPassword(text)} secureTextEntry={true}></TextInput>
       <TouchableOpacity
         style={styles.loginButton}
-        onPress={() => navigation.navigate("Home")}
+        onPress={() => handleLogin()}
       >
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
