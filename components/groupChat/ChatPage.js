@@ -1,7 +1,8 @@
 import React from "react"
+import { useRef } from 'react'
 import { FONTS } from "../fonts";
 import { COLORS } from "../colors";
-import { Text, TextInput, KeyboardAvoidingView, ScrollView, TouchableOpacity, Image, Modal, StyleSheet } from "react-native"
+import { Text, TextInput, KeyboardAvoidingView, ScrollView, TouchableOpacity, Image, Modal, StyleSheet, Platform, Keyboard } from "react-native"
 import { Message } from "./Message"
 import { UserMessage } from "./Message";
 import { UserProfile } from "./UserProfile";
@@ -40,6 +41,17 @@ export function ChatPage({navigation}) {
         onMessageSent(newerFeed)
     }
 
+    // Scrolls to the top whenever the text input is tapped
+    const scrollToTop = () => {
+        if (Platform.OS === 'ios') {
+          // For iOS, use scrollTo instead of scrollToEnd to scroll to the top
+          scrollView.scrollTo({ y: 0, animated: true });
+        } else {
+          // For Android, use scrollToEnd
+          scrollView.scrollToEnd({ animated: true });
+        }
+      };
+
     return (
         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'margin'} keyboardVerticalOffset={64} keyboardShouldPersistTaps='handled' style={styles.container}>
             <ScrollView  ref={ref => {this.scrollView = ref}} onContentSizeChange={() => this.scrollView.scrollToEnd({animated: true})} contentContainerStyle={styles.feed}>
@@ -55,6 +67,7 @@ export function ChatPage({navigation}) {
                 value={input}
                 placeholder="Send a message..."
                 multiline={true}
+                onFocus={scrollToTop}
                 />
                 <TouchableOpacity
                 style = {styles.submitButton}
