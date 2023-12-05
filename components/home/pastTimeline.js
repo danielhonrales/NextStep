@@ -6,6 +6,7 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
+  TouchableWithoutFeedback
 } from "react-native";
 import { COLORS } from "../colors";
 
@@ -14,6 +15,7 @@ export function PastTimeline({navigation}) {
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
+        <TouchableWithoutFeedback onPress={() => navigation.navigate('TimelinePage', {navigation: navigation, name: "Filler Timeline"})}>
         <View style={styles.timelineContainer}>
           <Image
             source={require("./../../assets/TimelineImages/FirstBaby.jpg")}
@@ -21,13 +23,11 @@ export function PastTimeline({navigation}) {
           />
           <View style={styles.description}>
             <Text style={styles.timelineText}>First Baby</Text>
-            <TouchableOpacity 
-            style={styles.viewButton}
-            onPress={() => navigation.navigate('TimelinePage', {navigation: navigation, name: "Filler Timeline"})}>
-              <Text style={styles.viewText}>View</Text>
-            </TouchableOpacity>
           </View>
         </View>
+        </TouchableWithoutFeedback>
+        
+        <TouchableWithoutFeedback onPress={() => navigation.navigate('TimelinePage', {navigation: navigation, name: "Filler Timeline"})}>
         <View style={styles.timelineContainer}>
           <Image
             source={require("./../../assets/TimelineImages/BuyingCar.jpg")}
@@ -35,13 +35,12 @@ export function PastTimeline({navigation}) {
           />
           <View style={styles.description}>
             <Text style={styles.timelineText}>Buying a Car</Text>
-            <TouchableOpacity 
-            style={styles.viewButton}
-            onPress={() => navigation.navigate('TimelinePage', {navigation: navigation, name: "Filler Timeline"})}>
-              <Text style={styles.viewText}>View</Text>
-            </TouchableOpacity>
+            
           </View>
         </View>
+        </TouchableWithoutFeedback>
+        
+        <TouchableWithoutFeedback onPress={() => navigation.navigate('TimelinePage', {navigation: navigation, name: "Filler Timeline"})}>
         <View style={styles.timelineContainer}>
           <Image
             source={require("./../../assets/TimelineImages/FirstCreditCard.jpg")}
@@ -49,13 +48,11 @@ export function PastTimeline({navigation}) {
           />
           <View style={styles.description}>
             <Text style={styles.timelineText}>First Credit Card</Text>
-            <TouchableOpacity 
-            style={styles.viewButton}
-            onPress={() => navigation.navigate('TimelinePage', {navigation: navigation, name: "Filler Timeline"})}>
-              <Text style={styles.viewText}>View</Text>
-            </TouchableOpacity>
+            
           </View>
         </View>
+        </TouchableWithoutFeedback>
+        
       </ScrollView>
     </View>
   );
