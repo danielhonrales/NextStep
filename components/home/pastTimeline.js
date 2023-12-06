@@ -15,7 +15,7 @@ export function PastTimeline({navigation}) {
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>     
-        <TouchableWithoutFeedback onPress={() => navigation.navigate('TimelinePage', {navigation: navigation, name: "Filler Timeline"})}>
+        <TouchableWithoutFeedback onPress={() => navigation.navigate('TimelinePage', {navigation: navigation, name: "Buying a Car"})}>
         <View style={styles.timelineContainer}>
           <Image
             source={require("./../../assets/TimelineImages/BuyingCar.jpg")}

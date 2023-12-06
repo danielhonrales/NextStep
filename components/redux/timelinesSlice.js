@@ -2,11 +2,17 @@ import { createSlice } from "@reduxjs/toolkit";
 import { STATUS } from "../Status"
 import { houseHuntingTimeline } from "./Timeline-HouseHunting";
 import { fillerTimeline } from "./Timeline-Filler";
+import { weddingPlanningTimeline } from "./Timeline-WeddingPlanning";
+import { retirementPlanTimeline } from "./Timeline-RetirementPlan";
+import { carTimeline } from "./Timeline-BuyingCar";
 
 export const timelinesSlice = createSlice({
   name: 'timelines',
   initialState: {
      "House Hunting": houseHuntingTimeline,
+     "Wedding Planning": weddingPlanningTimeline,
+     "Retirement Plan": retirementPlanTimeline,
+     "Buying a Car": carTimeline,
      'id': 0
   },
   reducers: {

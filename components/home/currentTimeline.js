@@ -42,13 +42,13 @@ export function CurrentTimeline({ navigation }) {
               </View>
             </TouchableWithoutFeedback>
           );
-        } else {
+        } else if (timelineInfo.name != "Wedding Planning" && timelineInfo.name != "Retirement Plan" && timelineInfo.name != "Buying a Car") {
           timelinesList.push(
             <TouchableWithoutFeedback
               onPress={() =>
                 navigation.navigate("TimelinePage", {
                   navigation: navigation,
-                  name: "Filler Timeline",
+                  name: timelineInfo.name,
                 })
               }
             >
@@ -79,7 +79,7 @@ export function CurrentTimeline({ navigation }) {
           onPress={() =>
             navigation.navigate("TimelinePage", {
               navigation: navigation,
-              name: "Filler Timeline",
+              name: "Wedding Planning",
             })
           }
         >
@@ -98,7 +98,7 @@ export function CurrentTimeline({ navigation }) {
           onPress={() =>
             navigation.navigate("TimelinePage", {
               navigation: navigation,
-              name: "Filler Timeline",
+              name: "Retirement Plan",
             })
           }
         >
