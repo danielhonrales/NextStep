@@ -86,7 +86,10 @@ export const timelinesSlice = createSlice({
       // Changes name of astep
       changeStepName: (state, action) => {
         timeline = state[action.payload.timelineName]
+        console.log('Changing step name')
+        console.log(timeline)
         step = findStep(timeline.steps, action.payload.id)
+        console.log(step)
         step.name = action.payload.newName
       },
 

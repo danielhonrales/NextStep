@@ -14,8 +14,9 @@ export function CreatedStep({timelineName, id, name, level, status, updateCreate
         resolve => setTimeout(resolve, ms)
     );
 
-    async function changeName() {
-        setName()
+    async function changeName(newName) {
+        setName(newName)
+        console.log(`OOGA BOOGA ${stepName}`)
         dispatch(changeStepName({
             timelineName: timelineName,
             id: id,
