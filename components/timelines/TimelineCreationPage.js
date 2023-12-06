@@ -48,7 +48,7 @@ export function TimelineCreationPage({route, navigation}) {
             timelineName: "NewTimeline", 
             newName: name
         }))
-        navigation.navigate("Home")
+        navigation.navigate("Home", {goal: "past"})
     }
 
     function addNewStep() {

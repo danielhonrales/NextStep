@@ -24,7 +24,7 @@ export function LoginPage({ navigation }) {
     // Checks if the entered credentials match the valid ones
     if(username === validUsername && password === validPassword){
       // Successful login, navigate to the next page
-      navigation.navigate("Home");
+      navigation.navigate("Home", {goal: "current"});
     }
     else{
       Alert.alert('Login Failed', 'Invalid username or password')

@@ -10,9 +10,9 @@ import { FONTS } from "../fonts";
 import { newTimeline } from "../redux/timelinesSlice";
 import { useSelector, useDispatch } from 'react-redux';
 
-export function HomePage({ navigation }) {
+export function HomePage({ route, navigation }) {
   const dispatch = useDispatch()
-  const [selectedGoal, setSelectedGoal] = useState(null);
+  const [selectedGoal, setSelectedGoal] = useState(route.params.goal);
 
   const delay = ms => new Promise(
     resolve => setTimeout(resolve, ms)
@@ -35,17 +35,25 @@ export function HomePage({ navigation }) {
     }
   };
 
+  function pickNavBarStyle(goal) {
+    if ((goal === "current" && selectedGoal === "current") || (goal === "past" && selectedGoal === "past")) {
+      return styles.selectedNavBarButton
+    } else {
+      return styles.navBarButtons
+    }
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.navBar}>
         <TouchableOpacity
-          style={styles.navBarButtons}
+          style={pickNavBarStyle("current")}
           onPress={() => setSelectedGoal("current")}
         >
           <Text style={styles.buttonText}>Current Timelines</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.navBarButtons}
+          style={pickNavBarStyle("past")}
           onPress={() => setSelectedGoal("past")}
         >
           <Text style={styles.buttonText}>Past Timelines</Text>
@@ -91,6 +99,18 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingBottom: 3,
     marginLeft: 12
+  },
+  selectedNavBarButton: {
+    height: 35,
+    width: 110,
+    borderRadius: 15,
+    backgroundColor: COLORS.foreground,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingBottom: 3,
+    marginLeft: 12,
+    borderColor: COLORS.accent,
+    borderWidth: 3
   },
   buttonText: {
     color: "black",
