@@ -22,7 +22,11 @@ export function HomePage({ route, navigation }) {
     dispatch(newTimeline())
 
     await delay(0)
-}
+  }
+
+  setToPast = () => {
+    setSelectedGoal("past")
+  }
 
   // Displays the designated timelines
   const displayGoals = () => {
@@ -63,7 +67,7 @@ export function HomePage({ route, navigation }) {
           style={styles.createTimelineButton}
           onPress={() => {
               makeNewTimeline()
-              navigation.navigate("Timeline Creation", {name: "NewTimeline"})
+              navigation.navigate("Timeline Creation", {name: "NewTimeline", setPast: setToPast})
             }
           }
         >

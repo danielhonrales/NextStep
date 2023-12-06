@@ -48,6 +48,7 @@ export function TimelineCreationPage({route, navigation}) {
             timelineName: "NewTimeline", 
             newName: name
         }))
+        route.params.setPast()
         navigation.navigate("Home", {goal: "past"})
     }
 
