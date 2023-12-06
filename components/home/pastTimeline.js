@@ -14,19 +14,7 @@ import { COLORS } from "../colors";
 export function PastTimeline({navigation}) {
   return (
     <View style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <TouchableWithoutFeedback onPress={() => navigation.navigate('TimelinePage', {navigation: navigation, name: "Filler Timeline"})}>
-        <View style={styles.timelineContainer}>
-          <Image
-            source={require("./../../assets/TimelineImages/FirstBaby.jpg")}
-            style={styles.images}
-          />
-          <View style={styles.description}>
-            <Text style={styles.timelineText}>First Baby</Text>
-          </View>
-        </View>
-        </TouchableWithoutFeedback>
-        
+      <ScrollView showsVerticalScrollIndicator={false}>     
         <TouchableWithoutFeedback onPress={() => navigation.navigate('TimelinePage', {navigation: navigation, name: "Filler Timeline"})}>
         <View style={styles.timelineContainer}>
           <Image
@@ -39,20 +27,6 @@ export function PastTimeline({navigation}) {
           </View>
         </View>
         </TouchableWithoutFeedback>
-        
-        <TouchableWithoutFeedback onPress={() => navigation.navigate('TimelinePage', {navigation: navigation, name: "Filler Timeline"})}>
-        <View style={styles.timelineContainer}>
-          <Image
-            source={require("./../../assets/TimelineImages/FirstCreditCard.jpg")}
-            style={styles.images}
-          />
-          <View style={styles.description}>
-            <Text style={styles.timelineText}>First Credit Card</Text>
-            
-          </View>
-        </View>
-        </TouchableWithoutFeedback>
-        
       </ScrollView>
     </View>
   );
