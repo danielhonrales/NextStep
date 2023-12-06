@@ -23,10 +23,49 @@ export const timelinesSlice = createSlice({
       // Toggles status of step
       toggleStatus: (state, action) => {
         timeline = state[action.payload.timelineName]
-        step = findStep(timeline.steps, action.payload.id)
-        if (step != null) {
-          step.status = (step.status == STATUS.in_progress) ? STATUS.done : STATUS.in_progress
+
+        // Toggle step's status
+        toggledStep = findStep(timeline.steps, action.payload.id)
+        if (toggledStep != null) {
+          toggledStep.status = (toggledStep.status == STATUS.in_progress) ? STATUS.done : STATUS.in_progress
         }
+
+        toggledStepStatus = toggledStep.status
+        toggledStepLevel = toggledStep.level
+
+        // Determine if any steps should autocomplete
+        timeline.steps.forEach(step => {
+          if (step.substeps.length > 0) {
+
+            // Parent step was toggled
+            if (toggledStepLevel == 0) {
+              // Match substeps to parent's status>
+              step.substeps.forEach(substep => {
+                substep.status = step.status
+              })
+
+            // Substep was toggled
+            } else {
+              allSubstepsDone = true
+              step.substeps.forEach(substep => {
+                allSubstepsDone = allSubstepsDone && (substep.status == STATUS.done)
+              })
+
+              // Parent step should autocomplete if all substeps complete
+              if (step.status == STATUS.in_progress) {
+                
+                step.status = allSubstepsDone ? STATUS.done : STATUS.in_progress
+
+              // If parent step done, consider children
+              } else {
+                // If substep
+                if (!allSubstepsDone) {
+                  step.status = STATUS.in_progress
+                }
+              }
+            }
+          }
+        })
       },
 
       // Creates a new empty timeline
@@ -51,8 +90,7 @@ export const timelinesSlice = createSlice({
         timeline.name = action.payload.newName
         state[action.payload.newName] = timeline
         delete state[action.payload.timelineName]
-        console.log('HELP')
-        console.log(state)
+        //console.log(state)
       },
 
       // Adds step to timeline's list of steps
@@ -63,6 +101,7 @@ export const timelinesSlice = createSlice({
             name: '', 
             status: STATUS.in_progress, 
             substeps: [],
+            level: 0,
             expanded: false
           }
         )

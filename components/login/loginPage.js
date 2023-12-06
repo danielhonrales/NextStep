@@ -7,6 +7,7 @@ import {
   Image,
   Alert,
   TouchableOpacity,
+  ScrollView
 } from "react-native";
 import { COLORS } from "../colors";
 
@@ -31,7 +32,7 @@ export function LoginPage({ navigation }) {
 
   }
   return (
-    <View style={styles.container}>
+    <ScrollView scrollEnabled={false} keyboardShouldPersistTaps='handled' contentContainerStyle={styles.container}>
       <View style={styles.logoContainer}>
         <Image
           source={require("./../../assets/NextStepLogo.png")}
@@ -46,7 +47,7 @@ export function LoginPage({ navigation }) {
       >
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
-    </View>
+      </ScrollView>
   );
 }
 

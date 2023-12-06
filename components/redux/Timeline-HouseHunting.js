@@ -9,15 +9,18 @@ const determinePreferencesStep = {
             id: "HouseHunting-0-0",
             name: "Set Budget",
             status: STATUS.in_progress,
-            substeps: []
+            substeps: [],
+            level: 1,
         },
         {
             id: "HouseHunting-0-1",
             name: "Choose Building Material",
             status: STATUS.in_progress,
-            substeps: []
+            substeps: [],
+            level: 1,
         },
     ],
+    level: 0,
     expanded: false
 }
 
@@ -26,6 +29,7 @@ const findCandidatesStep = {
     name: "Find Candidates", 
     status: STATUS.in_progress, 
     substeps: [],
+    level: 0,
     expanded: false
 }
 
@@ -38,9 +42,11 @@ const securePropertyStep = {
             id: "HouseHunting-2-0",
             name: "Speak with a Real Estate Agent",
             status: STATUS.in_progress,
-            substeps: []
+            substeps: [],
+            level: 1,
         },
     ],
+    level: 0,
     expanded: false
 }
 

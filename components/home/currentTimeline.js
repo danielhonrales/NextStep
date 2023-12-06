@@ -17,7 +17,7 @@ export function CurrentTimeline({navigation}) {
 
   function buildTimelines(timelinesList, timelinesInfo) {
     Object.values(timelinesInfo).forEach(timelineInfo => {
-      console.log(timelineInfo)
+      //console.log(timelineInfo)
       if (!Number.isInteger(timelineInfo)) {
         if (timelineInfo.name == "House Hunting") {
           timelinesList.push(

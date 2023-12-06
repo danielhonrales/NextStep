@@ -72,7 +72,7 @@ export function TimelineCreationPage({route, navigation}) {
                     style={styles.nameInput}
                     onChangeText={setName}
                     value={name}
-                    placeholder="Set a name..."
+                    placeholder="Name this timeline..."
                     multiline={false}
                 />
             </View>

@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { FONTS } from "../fonts";
 import { COLORS } from "../colors";
 import { ScrollView, TouchableOpacity, Image, Modal, StyleSheet, View, Button } from "react-native"
