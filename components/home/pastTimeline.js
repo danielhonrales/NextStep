@@ -23,7 +23,6 @@ export function PastTimeline({navigation}) {
           />
           <View style={styles.description}>
             <Text style={styles.timelineText}>Buying a Car</Text>
-            
           </View>
         </View>
         </TouchableWithoutFeedback>
