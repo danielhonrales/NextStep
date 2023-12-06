@@ -7,7 +7,6 @@ export const timelinesSlice = createSlice({
   name: 'timelines',
   initialState: {
      "House Hunting": houseHuntingTimeline,
-     "Filler Timeline": fillerTimeline,
      'id': 0
   },
   reducers: {
