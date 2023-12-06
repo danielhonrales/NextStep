@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     marginBottom: 25,
     borderColor: '#EDEADE',
-    borderWidth: 1.2
+    borderWidth: 2.5
   },
   images: {
     height: 200,
@@ -102,6 +102,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     paddingLeft: 15,
     paddingTop: 6,
+    paddingBottom: 10,
     fontFamily: 'monospace'
   },
 });

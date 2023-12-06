@@ -48,7 +48,7 @@ export function TimelineCreationPage({route, navigation}) {
             timelineName: "NewTimeline", 
             newName: name
         }))
-        navigation.goBack()
+        navigation.navigate("Home")
     }
 
     function addNewStep() {
@@ -162,18 +162,18 @@ const styles = StyleSheet.create({
     },
     doneButton: {
         position: "absolute",
-        height: 50,
-        width: 50,
+        height: 75,
+        width: 75,
         borderWidth: 2,
         backgroundColor: COLORS.accent,
         borderRadius: 25,
         justifyContent: 'center',
         alignSelf: 'flex-end',
-        marginLeft: 320,
+        marginLeft: 300,
     },
     doneIcon: {
-        height: 30,
-        width: 30,
+        height: 50,
+        width: 50,
         alignSelf: 'center',
     }
 })
